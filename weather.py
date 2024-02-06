@@ -2,6 +2,7 @@
 
 # Import what is needed
 import requests
+from datetime import datetime
 # URL and KEY of API
 def get_weather(city):
     api_key = 'e90ba95533437d2b2bf26a7c6085bb75'  
@@ -11,8 +12,14 @@ def get_weather(city):
     if response.status_code == 200:
         data = response.json()
         weather_description = data['weather'][0]['description']
-        temperature = data['main']['humidity']
+        temperature = data['main']['temp']
+        humidity = data['main']['humidity']
         wind_speed = data['wind']['speed']
         timestamp = data['dt']
+
+        date_time = datetime.utcfromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
+        return weather_description, temperature, humidity, wind_speed, date_time
+    else:
+        return None, None, None, None
 
 # The city to be inputed
