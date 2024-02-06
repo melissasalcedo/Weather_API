@@ -3,6 +3,7 @@
 # Import what is needed
 import requests
 from datetime import datetime
+import pytz
 # URL and KEY of API
 def get_weather(city):
     api_key = 'e90ba95533437d2b2bf26a7c6085bb75'  
@@ -17,8 +18,10 @@ def get_weather(city):
         wind_speed = data['wind']['speed']
         timestamp = data['dt']
 
-        date_time = datetime.utcfromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
-        return weather_description, temperature, humidity, wind_speed, date_time
+        ph_timezone = pytz.timezone('Asia/Manila')
+        utc_time = datetime.fromtimestamp(timestamp, tz=pytz.UTC)
+        local_time = utc_time.astimezone(ph_timezone).strftime('%Y-%m-%d %H:%M:%S')
+        return weather_description, temperature, humidity, wind_speed, local_time
     else:
         return None, None, None, None
     
