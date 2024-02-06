@@ -26,5 +26,17 @@ def main():
     city = input("Please input a city name: ")
     weather_description, temperature, humidity, wind_speed, date_time = get_weather(city)
 
+    if weather_description is not None: 
+        print(f"Date: {date_time}")
+        print(f"Weather in {city}:")
+        print(f"Description: {weather_description}")
+        print(f"Temperature: {temperature}°C")
+        print(f"Humidity: {humidity}%")
+        print(f"Wind Speed: {wind_speed} m/s")
+    else:
+        print(f"Could not found weather data for {city}. Please correct the city name and try again")
+
+if __name__ == "__main__":
+    main()
 
 # The city to be inputed
