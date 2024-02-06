@@ -21,5 +21,10 @@ def get_weather(city):
         return weather_description, temperature, humidity, wind_speed, date_time
     else:
         return None, None, None, None
+    
+def main():
+    city = input("Please input a city name: ")
+    weather_description, temperature, humidity, wind_speed, date_time = get_weather(city)
+
 
 # The city to be inputed
