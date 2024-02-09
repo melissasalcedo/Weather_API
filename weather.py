@@ -6,8 +6,8 @@ import pytz
 app = Bottle()
 
 def get_wind_direction(degrees):
-    directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']
-    index = round(degrees / 45) % 8
+    directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW']
+    index = round(degrees / (360 / len(directions))) % len(directions)
     return directions[index]
 
 def get_weather(city):
